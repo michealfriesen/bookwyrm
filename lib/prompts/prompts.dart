@@ -16,9 +16,24 @@ class Chapters {
   factory Chapters.fromJson(Map<String, dynamic> json) {
     return Chapters(
       tableOfContents: json['table of contents'] as String,
-      contentChapters: json['chapters'] as List<String>,
+      contentChapters: List<String>.from(json['chapters']),
     );
   }
+}
+
+String removeCodeFence(String input) {
+  final trimmed = input.trim();
+
+  if (trimmed.startsWith('```')) {
+    final firstNewline = trimmed.indexOf('\n');
+    final lastBackticks = trimmed.lastIndexOf('```');
+
+    if (firstNewline != -1 && lastBackticks > firstNewline) {
+      return trimmed.substring(firstNewline + 1, lastBackticks).trim();
+    }
+  }
+
+  return input;
 }
 
 class Prompter {
@@ -100,10 +115,28 @@ Use the next message as input
       ),
     );
 
-    print(rsp.message.content);
+    final content = removeCodeFence(rsp.message.content);
 
     return Chapters.fromJson(
-      jsonDecode(rsp.message.content) as Map<String, dynamic>,
+      jsonDecode(removeCodeFence(rsp.message.content)) as Map<String, dynamic>,
     );
+  }
+
+  Future<void> extractBestSentences(EpubBook book) async {
+    final rsp = await _client.generateChatCompletion(
+      request: GenerateChatCompletionRequest(
+        model: _modelName,
+        messages: [
+          Message(
+            role: MessageRole.system,
+            content: """
+""",
+          ),
+          Message(role: MessageRole.user, content: "hello world"),
+        ],
+      ),
+    );
+
+    print(rsp.message.content);
   }
 }
