@@ -6,11 +6,13 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_colorpicker/flutter_colorpicker.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'theme.dart';
+import '../../../app/theme.dart';
 
-class HomePage extends StatefulWidget {
+class GraphPage extends StatefulWidget {
+  const GraphPage({super.key});
+
   @override
-  State<HomePage> createState() => _HomePageState();
+  State<GraphPage> createState() => _GraphPageState();
 }
 
 class GraphState {
@@ -33,7 +35,7 @@ class GraphState {
   }
 }
 
-class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
+class _GraphPageState extends State<GraphPage> with TickerProviderStateMixin {
   late AnimationController _controller;
   final FocusNode _focusNode = FocusNode();
   
@@ -827,8 +829,8 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
         ),
         floatingActionButton: FloatingActionButton(
           onPressed: _addNode,
-          child: Icon(Icons.add),
           tooltip: 'Add Node',
+          child: Icon(Icons.add),
         ),
       ),
     );

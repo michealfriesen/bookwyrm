@@ -6,7 +6,6 @@ import 'dart:convert' show jsonDecode;
 import 'dart:core';
 import 'package:ollama_dart/ollama_dart.dart';
 import 'package:epub_pro/epub_pro.dart';
-import 'package:html2md/html2md.dart' as html2md;
 
 class Chapters {
   String tableOfContents;

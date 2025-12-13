@@ -15,12 +15,16 @@ dependencies:
   html2md: ^1.3.2
   ollama_dart: ^0.3.0+1
   flutter_colorpicker: ^1.1.0 
-  shared_preferences: ^2.2.2 
+  shared_preferences: ^2.2.2
+  flutter_riverpod: ^2.4.9
+  riverpod_annotation: ^2.3.3
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
   flutter_lints: ^5.0.0
+  riverpod_generator: ^2.3.9
+  build_runner: ^2.4.7
 
 flutter:
   uses-material-design: true

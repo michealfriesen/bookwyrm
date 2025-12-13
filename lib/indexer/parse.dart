@@ -1,7 +1,6 @@
 // Parsing a file into various supported object types that are used for passing chunks to LLMs
 
 import 'dart:core'; // For Regex
-import 'dart:async';
 import 'dart:convert';
 import 'dart:io';
 
@@ -31,6 +30,7 @@ Future<Book?> parseTextFile(String path) async {
   } catch (err) {
     print('Error: $err');
   }
+  return null;
 }
 
 void main() async {
