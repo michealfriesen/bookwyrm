@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../../profile/ui/profile_page.dart';
 import '../../files/ui/file_page.dart';
 import '../../graph/ui/graph_page.dart';
+import '../../quiz/ui/quiz_page.dart';
+import '../../profile/ui/profile_page.dart';
 import '../state/tab_index_provider.dart';
 
 /// Main bottom-tab scaffold for the app.
@@ -17,6 +18,7 @@ class MainTabNavigator extends ConsumerWidget {
     final screens = <Widget>[
       const GraphPage(),
       const FilePickerScreen(),
+      const QuizScreen(),
       const ProfileScreen(),
     ];
 
@@ -25,7 +27,6 @@ class MainTabNavigator extends ConsumerWidget {
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: currentIndex,
         onTap: (index) {
-          // Replaces setState(() => _currentIndex = index)
           ref.read(tabIndexProvider.notifier).state = index;
         },
         items: const [
@@ -36,6 +37,10 @@ class MainTabNavigator extends ConsumerWidget {
           BottomNavigationBarItem(
             icon: Icon(Icons.upload_file),
             label: 'Files',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.book),
+            label: 'Quiz',
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.person),

@@ -354,7 +354,7 @@ class _GraphPageState extends State<GraphPage> with TickerProviderStateMixin {
                     width: 40,
                     height: 40,
                     decoration: BoxDecoration(
-                      color: AppTheme.background,
+                      color: Theme.of(context).colorScheme.surface,
                       border: Border.all(color: Colors.grey),
                       borderRadius: BorderRadius.circular(8),
                     ),
@@ -362,11 +362,10 @@ class _GraphPageState extends State<GraphPage> with TickerProviderStateMixin {
                   onTap: () {
                     _pickColor(
                       context: context,
-                      currentColor: AppTheme.background,
+                      currentColor: Theme.of(context).colorScheme.surface,
                       title: 'Pick Background Color',
                       onColorChanged: (color) {
                         setState(() {
-                          AppTheme.updateColors(newBackground: color);
                         });
                       },
                     );
@@ -379,7 +378,7 @@ class _GraphPageState extends State<GraphPage> with TickerProviderStateMixin {
                     width: 40,
                     height: 40,
                     decoration: BoxDecoration(
-                      color: AppTheme.primary,
+                      color: AppTheme.ash,
                       border: Border.all(color: Colors.grey),
                       borderRadius: BorderRadius.circular(8),
                     ),
@@ -387,11 +386,10 @@ class _GraphPageState extends State<GraphPage> with TickerProviderStateMixin {
                   onTap: () {
                     _pickColor(
                       context: context,
-                      currentColor: AppTheme.primary,
+                      currentColor: AppTheme.ash,
                       title: 'Pick Node Color',
                       onColorChanged: (color) {
                         setState(() {
-                          AppTheme.updateColors(newPrimary: color);
                         });
                       },
                     );
@@ -404,10 +402,6 @@ class _GraphPageState extends State<GraphPage> with TickerProviderStateMixin {
             TextButton(
               onPressed: () {
                 setState(() {
-                  AppTheme.updateColors(
-                    newBackground: Colors.black,
-                    newPrimary: Colors.blue,
-                  );
                 });
               },
               child: Text('Reset'),
@@ -551,7 +545,7 @@ class _GraphPageState extends State<GraphPage> with TickerProviderStateMixin {
       focusNode: _focusNode,
       onKeyEvent: _handleKeyEvent,
       child: Scaffold(
-        backgroundColor: AppTheme.background,
+        backgroundColor: Theme.of(context).colorScheme.surface,
         appBar: AppBar(
           title: Text('microlearning'),
           actions: [
@@ -790,21 +784,21 @@ class _GraphPageState extends State<GraphPage> with TickerProviderStateMixin {
                                 decoration: BoxDecoration(
                                   // Magenta when it's the closest node to hover
                                   color: (node == closestNodeToHover && hoveredEdge != null)
-                                      ? magentaColor.withOpacity(0.8)
+                                      ? magentaColor.withValues(alpha: 0.8)
                                       : (node == hoveredNode)
-                                          ? AppTheme.primary.withOpacity(0.9)
+                                          ? AppTheme.ash.withValues(alpha: 0.9)
                                           : (node == connectionStartNode
-                                              ? AppTheme.primary.withOpacity(0.7)
+                                              ? AppTheme.ash.withValues(alpha: 0.7)
                                               : (node == draggedNode
-                                                  ? AppTheme.primary.withOpacity(0.6)
-                                                  : AppTheme.primary.withOpacity(0.3))),
+                                                  ? AppTheme.ash.withValues(alpha: 0.6)
+                                                  : AppTheme.ash.withValues(alpha: 0.3))),
                                   shape: BoxShape.circle,
                                   border: Border.all(
                                     color: (node == closestNodeToHover && hoveredEdge != null)
                                         ? magentaColor
                                         : (node == hoveredNode || node == connectionStartNode)
-                                            ? AppTheme.primary
-                                            : AppTheme.primary.withOpacity(0.6),
+                                            ? AppTheme.ash
+                                            : AppTheme.ash.withValues(alpha: 0.6),
                                     width: (node == closestNodeToHover || node == hoveredNode || node == connectionStartNode) ? 3 : 2,
                                   ),
                                 ),
@@ -1013,8 +1007,8 @@ class GraphPainter extends CustomPainter {
       // Magenta if hovered, otherwise normal
       final paint = Paint()
         ..color = (edge == hoveredEdge) 
-            ? magentaColor.withOpacity(0.7)
-            : AppTheme.primary.withOpacity(0.3)
+            ? magentaColor.withValues(alpha: 0.7)
+            : AppTheme.ash.withValues(alpha: 0.3)
         ..strokeWidth = (edge == hoveredEdge) ? 3 : 2;
       
       canvas.drawLine(fromNode.position, toNode.position, paint);
@@ -1022,7 +1016,7 @@ class GraphPainter extends CustomPainter {
 
     if (connectionStartNode != null && connectionEndPosition != null) {
       final previewPaint = Paint()
-        ..color = AppTheme.primary.withOpacity(0.6)
+        ..color = AppTheme.ash.withValues(alpha: 0.6)
         ..strokeWidth = 2
         ..style = PaintingStyle.stroke
         ..strokeCap = StrokeCap.round;
