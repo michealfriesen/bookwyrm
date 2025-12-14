@@ -2,7 +2,6 @@ import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:logging/logging.dart';
 
-// move file picker logic to a separate screen
 class FilePickerScreen extends StatefulWidget {
   const FilePickerScreen({super.key});
 
@@ -47,34 +46,37 @@ class _FilePickerScreenState extends State<FilePickerScreen> {
           children: [
             Text("something something file something"),
             SizedBox(height: 20),
-            ElevatedButton(onPressed: _pickFile, child: Text("Press me!")),
+            FilledButton(
+              onPressed: _pickFile,
+              child: Text("Press me!"),
+            ),
             SizedBox(height: 20),
             if (_fileName != null)
               Container(
                 padding: EdgeInsets.all(16),
                 margin: EdgeInsets.all(16),
                 decoration: BoxDecoration(
-                  color: Colors.green.shade100,
-                  border: Border.all(color: Colors.green),
+                  color: Theme.of(context).colorScheme.primary,
+                  border: Border.all(color: Theme.of(context).colorScheme.onPrimary),
                   borderRadius: BorderRadius.circular(8),
                 ),
                 child: Column(
                   children: [
-                    Icon(Icons.check_circle, color: Colors.green, size: 40),
+                    Icon(Icons.check_circle, color: Theme.of(context).colorScheme.onPrimary, size: 40),
                     SizedBox(height: 8),
                     Text(
                       'File Uploaded!',
                       style: TextStyle(
                         fontSize: 18,
                         fontWeight: FontWeight.bold,
-                        color: Colors.green.shade900,
+                        color: Theme.of(context).colorScheme.onPrimary,
                       ),
                     ),
                     SizedBox(height: 8),
                     Text('Selected: $_fileName'),
                     if (_filePath != null)
                       Text('Path: $_filePath',
-                          style: TextStyle(fontSize: 12, color: Colors.grey)),
+                          style: TextStyle(fontSize: 12, color: Theme.of(context).colorScheme.onPrimary)),
                   ],
                 ),
               ),

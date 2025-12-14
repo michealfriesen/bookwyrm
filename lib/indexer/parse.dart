@@ -1,5 +1,3 @@
-// Parsing a file into various supported object types that are used for passing chunks to LLMs
-
 import 'dart:core'; // For Regex
 import 'dart:convert';
 import 'dart:io';
@@ -36,12 +34,3 @@ Future<Book?> parseTextFile(String path) async {
 void main() async {
   parseTextFile('lib/indexer/data/book.txt');
 }
-
-
-// Open a file stream to a text file
-
-// Parse this into object of some kind
-
-// Basic chapter parsing
-
-// Basic length analysis
