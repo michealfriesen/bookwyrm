@@ -46,7 +46,7 @@ class _FilePickerScreenState extends State<FilePickerScreen> {
           children: [
             Text("something something file something"),
             SizedBox(height: 20),
-            ElevatedButton(
+            FilledButton(
               onPressed: _pickFile,
               child: Text("Press me!"),
             ),

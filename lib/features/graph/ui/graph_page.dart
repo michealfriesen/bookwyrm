@@ -366,6 +366,7 @@ class _GraphPageState extends State<GraphPage> with TickerProviderStateMixin {
                       title: 'Pick Background Color',
                       onColorChanged: (color) {
                         setState(() {
+                          // TODO: Empty as we need to set this to a state value, not a color in the theme.
                         });
                       },
                     );
@@ -378,7 +379,7 @@ class _GraphPageState extends State<GraphPage> with TickerProviderStateMixin {
                     width: 40,
                     height: 40,
                     decoration: BoxDecoration(
-                      color: AppTheme.ash,
+                      color: AppTheme.primary,
                       border: Border.all(color: Colors.grey),
                       borderRadius: BorderRadius.circular(8),
                     ),
@@ -386,10 +387,11 @@ class _GraphPageState extends State<GraphPage> with TickerProviderStateMixin {
                   onTap: () {
                     _pickColor(
                       context: context,
-                      currentColor: AppTheme.ash,
+                      currentColor: AppTheme.primary,
                       title: 'Pick Node Color',
                       onColorChanged: (color) {
                         setState(() {
+                          // TODO: Empty as we need to set this to a state value, not a color in the theme.
                         });
                       },
                     );
@@ -402,6 +404,7 @@ class _GraphPageState extends State<GraphPage> with TickerProviderStateMixin {
             TextButton(
               onPressed: () {
                 setState(() {
+                  // TODO: Empty as we need to set this to a state value, not a color in the theme.
                 });
               },
               child: Text('Reset'),
@@ -786,19 +789,19 @@ class _GraphPageState extends State<GraphPage> with TickerProviderStateMixin {
                                   color: (node == closestNodeToHover && hoveredEdge != null)
                                       ? magentaColor.withValues(alpha: 0.8)
                                       : (node == hoveredNode)
-                                          ? AppTheme.ash.withValues(alpha: 0.9)
+                                          ? AppTheme.primary.withValues(alpha: 0.9)
                                           : (node == connectionStartNode
-                                              ? AppTheme.ash.withValues(alpha: 0.7)
+                                              ? AppTheme.primary.withValues(alpha: 0.7)
                                               : (node == draggedNode
-                                                  ? AppTheme.ash.withValues(alpha: 0.6)
-                                                  : AppTheme.ash.withValues(alpha: 0.3))),
+                                                  ? AppTheme.primary.withValues(alpha: 0.6)
+                                                  : AppTheme.primary.withValues(alpha: 0.3))),
                                   shape: BoxShape.circle,
                                   border: Border.all(
                                     color: (node == closestNodeToHover && hoveredEdge != null)
                                         ? magentaColor
                                         : (node == hoveredNode || node == connectionStartNode)
-                                            ? AppTheme.ash
-                                            : AppTheme.ash.withValues(alpha: 0.6),
+                                            ? AppTheme.primary
+                                            : AppTheme.primary.withValues(alpha: 0.6),
                                     width: (node == closestNodeToHover || node == hoveredNode || node == connectionStartNode) ? 3 : 2,
                                   ),
                                 ),
@@ -1008,7 +1011,7 @@ class GraphPainter extends CustomPainter {
       final paint = Paint()
         ..color = (edge == hoveredEdge) 
             ? magentaColor.withValues(alpha: 0.7)
-            : AppTheme.ash.withValues(alpha: 0.3)
+            : AppTheme.primary.withValues(alpha: 0.3)
         ..strokeWidth = (edge == hoveredEdge) ? 3 : 2;
       
       canvas.drawLine(fromNode.position, toNode.position, paint);
@@ -1016,7 +1019,7 @@ class GraphPainter extends CustomPainter {
 
     if (connectionStartNode != null && connectionEndPosition != null) {
       final previewPaint = Paint()
-        ..color = AppTheme.ash.withValues(alpha: 0.6)
+        ..color = AppTheme.primary.withValues(alpha: 0.6)
         ..strokeWidth = 2
         ..style = PaintingStyle.stroke
         ..strokeCap = StrokeCap.round;
